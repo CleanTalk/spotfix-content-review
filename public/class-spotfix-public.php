@@ -13,6 +13,11 @@ class Spotfix_Public {
 			return;
 		}
 
+		// Check if DISALLOW_UNFILTERED_HTML is enabled - if so, don't load JS
+		if ( defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML ) {
+			return;
+		}
+
 		$settings = get_option( 'spotfix_settings', array() );
 		$code = isset( $settings['code'] ) ? $settings['code'] : '';
 		$visibility = isset( $settings['visibility'] ) ? $settings['visibility'] : 'everyone';

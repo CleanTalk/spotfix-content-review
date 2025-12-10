@@ -110,3 +110,23 @@
 	text-decoration: underline;
 }
 
+.spotfix-unfiltered-html-notice {
+	margin: 15px 0 !important;
+	padding: 12px !important;
+	border-left: 4px solid #dc3232 !important;
+	background: #fff !important;
+}
+
+.spotfix-unfiltered-html-notice p {
+	margin: 0 !important;
+}
+
+.spotfix-unfiltered-html-title {
+	font-weight: 600 !important;
+	margin-bottom: 8px !important;
+}
+
+.spotfix-unfiltered-html-description {
+	margin: 8px 0 0 0 !important;
+}
+
