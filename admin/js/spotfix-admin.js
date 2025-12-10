@@ -37,11 +37,8 @@
 						
 						// Update error message
 						if (status === 'offline' && error) {
-							if ($errorMessage.length) {
-								$errorMessage.text(error);
-							} else {
-								$statusIndicator.after('<p class="spotfix-error-message">' + error + '</p>');
-							}
+							var newError = $('<p class="spotfix-error-message"></p>').text(error);
+							$statusIndicator.after(newError);
 						} else {
 							$errorMessage.remove();
 						}
