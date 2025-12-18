@@ -37,7 +37,7 @@ class Spotfix_Status_Checker {
 		if ( is_wp_error( $response ) ) {
 			return array(
 				'status' => 'offline',
-				'error' => sprintf( __( 'Cannot connect to doboard.com: %s', 'spelling-grammar-typo-reviews' ), $response->get_error_message() )
+				'error' => __( 'Cannot connect to doboard.com: ', 'spelling-grammar-typo-reviews' ) . esc_html( $response->get_error_message() )
 			);
 		}
 
@@ -45,7 +45,7 @@ class Spotfix_Status_Checker {
 		if ( $response_code !== 200 ) {
 			return array(
 				'status' => 'offline',
-				'error' => sprintf( __( 'Spotfix service returned error code: %s', 'spelling-grammar-typo-reviews' ), $response_code )
+				'error' => __( 'Spotfix service returned error code: ', 'spelling-grammar-typo-reviews' ) . esc_html( $response_code )
 			);
 		}
 

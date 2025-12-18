@@ -9,7 +9,6 @@
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: spelling-grammar-typo-reviews
- * Domain Path: /languages
  */
 
 // If this file is called directly, abort.
@@ -27,7 +26,7 @@ define( 'SPOTFIX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 /**
  * The code that runs during plugin activation.
  */
-function activate_spotfix() {
+function spotfix_activate() {
 	require_once SPOTFIX_PLUGIN_DIR . 'includes/class-spotfix-activator.php';
 	Spotfix_Activator::activate();
 }
@@ -35,13 +34,13 @@ function activate_spotfix() {
 /**
  * The code that runs during plugin deactivation.
  */
-function deactivate_spotfix() {
+function spotfix_deactivate() {
 	require_once SPOTFIX_PLUGIN_DIR . 'includes/class-spotfix-deactivator.php';
 	Spotfix_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_spotfix' );
-register_deactivation_hook( __FILE__, 'deactivate_spotfix' );
+register_activation_hook( __FILE__, 'spotfix_activate' );
+register_deactivation_hook( __FILE__, 'spotfix_deactivate' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -52,9 +51,9 @@ require SPOTFIX_PLUGIN_DIR . 'includes/class-spotfix.php';
 /**
  * Begins execution of the plugin.
  */
-function run_spotfix() {
+function spotfix_run() {
 	$plugin = new Spotfix();
 	$plugin->run();
 }
-run_spotfix();
+spotfix_run();
 

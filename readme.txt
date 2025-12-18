@@ -1,8 +1,8 @@
 === Spotfix - proofreading, spelling and grammar reviews by visitors ===
 Contributors: spotfix
-Tags: proofreading, grammar, spell-check, feedback, content-editing, doboard
+Tags: proofreading, grammar, spell-check, feedback, doboard
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.9
 Stable tag: 1.0.0
 Requires PHP: 7.2
 License: GPL-2.0+
@@ -32,12 +32,21 @@ SpotFix turns proofreading and feedback into structured, actionable improvements
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/spell-grammar-typo-review` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/spelling-grammar-typo-reviews` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Go to Settings > Spotfix to configure the plugin.
-4. Insert your Spotfix code from doboard.com/spotfix#doboard_settings.
-5. Choose the visibility scope for the widget.
-6. Save settings and verify the status is "online".
+
+What should I do next?
+* Go to [doboard.com](https://doboard.com/?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)  → Account → ANY_PROJECT → Settings → SpotFix. Don't have a doBoard account yet? Signup here:[doboard.com/signup](https://doboard.com/signup?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)
+* Copy the code and paste it into the area above.
+* Click Save settings.
+* You should see the status "SpotFix is online." Congratulations!
+* Go to your home page.
+* Select (mark) any text or image on the page.
+* Click the Review content button in the bottom-right corner.
+* Post your first spot!
+* Find the task created from the spot in doboard.com → Account → ANY_PROJECT.
+* Done!
 
 == Frequently Asked Questions ==
 
