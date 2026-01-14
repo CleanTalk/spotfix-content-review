@@ -1,6 +1,6 @@
 === Spotfix - proofreading, spelling and grammar reviews by visitors ===
-Contributors: spotfix
-Tags: proofreading, grammar, spell-check, typo 
+Contributors: cleantalk, glomberg, alexandergull, sergefcleantalk, antonv1
+Tags: proofreading, grammar, spell-check, typo
 Requires at least: 5.0
 Tested up to: 6.9
 Stable tag: 1.0.0
