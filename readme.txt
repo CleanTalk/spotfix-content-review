@@ -8,7 +8,7 @@ Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Collect questions, suggestions, and fix content directly on website pages.
+Collect visitor's questions and suggestions directly on your website pages
 
 == Description ==
 
@@ -18,7 +18,7 @@ SpotFix is a lightweight on-page widget that makes it easy for visitors, editors
 
 A visitor simply highlights a piece of text or an element on the page. When they do, a compact widget appears in the bottom-right corner, allowing them to submit a Spot — a short request, correction suggestion, or question attached to the precise content location. No need to describe where the problem is — the widget knows automatically.
 
-Submitting a Spot takes less than 10 seconds. The widget auto-fills the title using the highlighted text or an image's Title/Alt attribute. The visitor adds a short message, optionally includes their name and email, while the page URL and element reference are captured automatically.
+Submitting a Spot takes less than 10 seconds. The widget automatically fills the title using the highlighted text or an image's Title/Alt attribute. The visitor adds a short message, optionally includes their name and email, while the page URL and element reference are captured automatically.
 
 Each Spot becomes a task in doBoard, where your team can track progress, assign responsibility, add labels, and set due dates. The referenced element on the page is highlighted, making content review and corrections extremely straightforward. This greatly reduces miscommunication — especially compared to email feedback or team chat screenshots.
 
