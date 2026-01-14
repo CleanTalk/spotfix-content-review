@@ -37,7 +37,7 @@ SpotFix turns proofreading and feedback into structured, actionable improvements
 3. Go to Settings > Spotfix to configure the plugin.
 
 What should I do next?
-* Go to [doboard.com](https://doboard.com/?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)  → Account → ANY_PROJECT → Settings → SpotFix. Don't have a doBoard account yet? Signup here:[doboard.com/signup](https://doboard.com/signup?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)
+* Go to [doboard.com](https://doboard.com/?utm_source=spotfix-plugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)  → Account → ANY_PROJECT → Settings → SpotFix. Don't have a doBoard account yet? Signup here:[doboard.com/signup](https://doboard.com/signup?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)
 * Copy the code and paste it into the area above.
 * Click Save settings.
 * You should see the status "SpotFix is online." Congratulations!
