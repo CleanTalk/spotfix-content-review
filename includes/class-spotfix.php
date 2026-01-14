@@ -51,7 +51,7 @@ class Spotfix {
 	private function define_public_hooks() {
 		$plugin_public = new Spotfix_Public();
 
-		$this->loader->add_action( 'wp_footer', $plugin_public, 'enqueue_spotfix_script' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_spotfix_script' );
 	}
 
 	/**

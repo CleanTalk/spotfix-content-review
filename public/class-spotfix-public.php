@@ -47,15 +47,23 @@ class Spotfix_Public {
 		if ( ! $should_show ) {
 			return;
 		}
+        // Register stub.
+        wp_register_script(
+                'spotfix-stub',
+                '',
+                array(),
+                SPOTFIX_VERSION,
+                true
+        );
 
-		// Output the Spotfix code
-		// Note: Code is output as-is since it's user-provided JavaScript from admin settings
-		?>
-		<!-- Spotfix Widget -->
-		<script type="text/javascript">
-		<?php echo $code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</script>
-		<?php
+        // Enqueue stub.
+        wp_enqueue_script('spotfix-stub');
+
+        // Enqueue raw inline script. Note: Code is output as-is since it's user-provided JavaScript from admin settings
+        wp_add_inline_script(
+                'spotfix-stub',
+                $code
+        );
 	}
 }
 
