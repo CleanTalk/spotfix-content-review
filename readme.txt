@@ -1,5 +1,5 @@
 === Spotfix - proofreading, spelling and grammar reviews by visitors ===
-Contributors: spotfix
+Contributors: cleantalk, glomberg, alexandergull, sergefcleantalk, antonv1
 Tags: proofreading, grammar, spell-check, feedback, doboard
 Requires at least: 5.0
 Tested up to: 6.9
@@ -8,7 +8,7 @@ Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Collect questions, suggestions, and fix content directly on website pages.
+Collect visitor's questions and suggestions directly on your website pages
 
 == Description ==
 
@@ -18,7 +18,7 @@ SpotFix is a lightweight on-page widget that makes it easy for visitors, editors
 
 A visitor simply highlights a piece of text or an element on the page. When they do, a compact widget appears in the bottom-right corner, allowing them to submit a Spot — a short request, correction suggestion, or question attached to the precise content location. No need to describe where the problem is — the widget knows automatically.
 
-Submitting a Spot takes less than 10 seconds. The widget auto-fills the title using the highlighted text or an image's Title/Alt attribute. The visitor adds a short message, optionally includes their name and email, while the page URL and element reference are captured automatically.
+Submitting a Spot takes less than 10 seconds. The widget automatically fills the title using the highlighted text or an image's Title/Alt attribute. The visitor adds a short message, optionally includes their name and email, while the page URL and element reference are captured automatically.
 
 Each Spot becomes a task in doBoard, where your team can track progress, assign responsibility, add labels, and set due dates. The referenced element on the page is highlighted, making content review and corrections extremely straightforward. This greatly reduces miscommunication — especially compared to email feedback or team chat screenshots.
 
@@ -37,7 +37,7 @@ SpotFix turns proofreading and feedback into structured, actionable improvements
 3. Go to Settings > Spotfix to configure the plugin.
 
 What should I do next?
-* Go to [doboard.com](https://doboard.com/?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)  → Account → ANY_PROJECT → Settings → SpotFix. Don't have a doBoard account yet? Signup here:[doboard.com/signup](https://doboard.com/signup?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)
+* Go to [doboard.com](https://doboard.com/?utm_source=spotfix-plugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)  → Account → ANY_PROJECT → Settings → SpotFix. Don't have a doBoard account yet? Signup here:[doboard.com/signup](https://doboard.com/signup?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)
 * Copy the code and paste it into the area above.
 * Click Save settings.
 * You should see the status "SpotFix is online." Congratulations!
