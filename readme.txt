@@ -32,7 +32,7 @@ SpotFix turns proofreading and feedback into structured, actionable improvements
 
 == External services ==
 
-This plugin connects to the following APIs — api.doboard.com, api.cleantalk.org, and spotfix.doboard.com — to collect data about open spots and comments for the website and the currently viewed page. This data is displayed in the widget and helps visitors communicate about existing spots and submit new ones. The plugin sends user-generated content, as well as an email address and password (if provided), to the API. It uses JavaScript hosted on spotfix.doboard.com to display the widget to website visitors. This service is provided by CleanTalk Inc, [Privacy Policy](https://cleantalk.org/publicoffer#privacy).
+This plugin connects to the following APIs — api.doboard.com, api.cleantalk.org, and spotfix.doboard.com — to collect data about open spots and comments for the website and the currently viewed page. This data is displayed in the widget and helps visitors communicate about existing spots and submit new ones. The plugin sends user-generated content, as well as an email address and password (if provided), to the API. It uses JavaScript hosted on spotfix.doboard.com to display the widget to website visitors. This service is provided by CleanTalk Inc, [Privacy Policy](https://doboard.com/privacy-policy).
 
 == Installation ==
 
