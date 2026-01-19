@@ -40,7 +40,7 @@ This plugin connects to the following APIs — api.doboard.com, api.cleantalk.or
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/spelling-grammar-typo-reviews` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/spotfix-content-review` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Go to Settings > Spotfix to configure the plugin.
 
