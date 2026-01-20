@@ -23,7 +23,9 @@ class Spotfix_Admin {
 			wp_enqueue_script( 'spotfix-admin', SPOTFIX_PLUGIN_URL . 'admin/js/spotfix-admin.js', array( 'jquery' ), SPOTFIX_VERSION, false );
 			wp_localize_script( 'spotfix-admin', 'spotfixAdmin', array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'spotfix_check_status' )
+				'nonce' => wp_create_nonce( 'spotfix_check_status' ),
+				'nonceCreateAccount' => wp_create_nonce( 'spotfix_create_account' ),
+				'nonceConfigureAccount' => wp_create_nonce( 'spotfix_configure_account' )
 			) );
 		}
 	}
@@ -137,7 +139,41 @@ class Spotfix_Admin {
 		$settings = get_option( 'spotfix_settings', array() );
 		$code = isset( $settings['code'] ) ? $settings['code'] : '';
 		$example_code = "(function () {\n      let apbctScript = document.createElement('script');\n      apbctScript.type = 'text/javascript';\n      apbctScript.async = \"true\";\n      apbctScript.src = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js'; \n      let firstScriptNode = document.getElementsByTagName('script')[0];\n      firstScriptNode.parentNode.insertBefore(apbctScript, firstScriptNode);\n    })();";
+		
+		// Show auto-setup section if code is not configured
+		if ( empty( $code ) ) :
+			$admin_email = get_option( 'admin_email' );
 		?>
+		<div class="spotfix-auto-setup" style="margin-bottom: 20px; padding: 15px; background: #f0f6fc; border-left: 4px solid #2271b1; border-radius: 4px;">
+			<h4 style="margin-top: 0; margin-bottom: 10px;"><?php esc_html_e( 'Automatic Setup', 'spotfix-content-review' ); ?></h4>
+			<p style="margin-bottom: 15px;">
+				<?php 
+				printf(
+					esc_html__( 'Click the button below to automatically create a doBoard account using your admin email (%s) and configure the widget.', 'spotfix-content-review' ),
+					'<strong>' . esc_html( $admin_email ) . '</strong>'
+				);
+				?>
+			</p>
+
+			<div id="spotfix-create-account-block">
+				<button type="button" id="spotfix-create-account" class="button button-primary">
+					<?php esc_html_e( 'Create Account', 'spotfix-content-review' ); ?>
+				</button>
+				<span id="spotfix-create-spinner" class="spinner" style="float: none;"></span>
+			</div>
+
+			<div id="spotfix-configure-account-block" style="margin-top:15px; display:none;">
+				<button type="button" id="spotfix-configure-account" class="button button-secondary">
+					<?php esc_html_e( 'Configure Account', 'spotfix-content-review' ); ?>
+				</button>
+				<span id="spotfix-configure-spinner" class="spinner" style="float: none;"></span>
+			</div>
+
+			<div id="spotfix-setup-message" style="margin-top: 10px;"></div>
+		</div>
+		<p class="description" style="margin-bottom: 10px;"><?php esc_html_e( 'Or paste your code manually:', 'spotfix-content-review' ); ?></p>
+		<?php endif; ?>
+		
 		<textarea name="spotfix_settings[code]" rows="8" class="large-text code-textarea" id="spotfix-code"<?php echo empty( $code ) ? ' placeholder="' . esc_attr( $example_code ) . '"' : ''; ?>><?php echo esc_textarea( $code ); ?></textarea>
 		<?php if ( empty( $code ) ) : ?>
 			<div class="spotfix-instructions-section" style="margin-top: 20px; padding: 20px; background: #f9f9f9; border-left: 4px solid #2271b1;">
@@ -329,6 +365,44 @@ class Spotfix_Admin {
 		update_option( 'spotfix_settings', $settings );
 
 		wp_send_json_success( $status_check );
+	}
+
+	/**
+	 * AJAX handler for creating account.
+	 */
+	public function ajax_create_account() {
+		check_ajax_referer( 'spotfix_create_account', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'error' => __( 'Unauthorized', 'spotfix-content-review' ) ) );
+		}
+
+		$result = Spotfix_API::create_account();
+
+		if ( $result['success'] ) {
+			wp_send_json_success( $result );
+		} else {
+			wp_send_json_error( $result );
+		}
+	}
+
+	/**
+	 * AJAX handler for configuring account.
+	 */
+	public function ajax_configure_account() {
+		check_ajax_referer( 'spotfix_configure_account', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'error' => __( 'Unauthorized', 'spotfix-content-review' ) ) );
+		}
+
+		$result = Spotfix_API::configurate_account();
+
+		if ( $result['success'] ) {
+			wp_send_json_success( $result );
+		} else {
+			wp_send_json_error( $result );
+		}
 	}
 
 	/**
