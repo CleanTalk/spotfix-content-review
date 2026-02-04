@@ -27,17 +27,6 @@ class Spotfix_Public {
 			return;
 		}
 
-        $url = '';
-        preg_match('/apbctScript\.src\s*=\s*["\'](https:\/\/spotfix\.doboard\.com\/[^"\']+)["\']/', $code, $matches);
-        if (isset($matches[1])) {
-            $url = $matches[1];
-        }
-
-        // Check if the URL is correct
-        if ( empty($url) ) {
-            return;
-        }
-
 		// Check visibility settings
 		$should_show = false;
 
@@ -70,19 +59,30 @@ class Spotfix_Public {
         // Enqueue stub.
         wp_enqueue_script('spotfix-stub');
 
-        // Enqueue raw inline script. Note: Code is output as-is since it's user-provided JavaScript from admin settings
-        wp_add_inline_script(
-                'spotfix-stub',
-                "(function () {
+        $sanitized_query_string = Spotfix_Status_Checker::extractSanitizedQueryString(
+            $code,
+            array('projectToken', 'projectId', 'accountId')
+        );
+
+        if ( empty($sanitized_query_string) ) {
+            return;
+        }
+
+        $script_data =
+        "(function () {
                   window.SpotfixWidgetConfig = {verticalPosition: 'compact'};
                   let spotFixScript = document.createElement('script');
                   spotFixScript.type = 'text/javascript';
                   spotFixScript.async = 'true';
                   spotFixScript.defer = 'true';
-                  spotFixScript.src = '" . esc_url_raw($url) . "';
+                  spotFixScript.src = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?" . $sanitized_query_string. "';
                   let firstScriptNode = document.getElementsByTagName('script')[0];
                   firstScriptNode.parentNode.insertBefore(spotFixScript, firstScriptNode);
-                })();");
+                })();
+        ";
+
+        // Enqueue raw inline script. Note: Code is output as-is since it's user-provided JavaScript from admin settings
+        wp_add_inline_script('spotfix-stub', $script_data);
 	}
 }
 
