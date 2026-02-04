@@ -3,7 +3,7 @@ Contributors: cleantalk, glomberg, alexandergull, sergefcleantalk, antonv1
 Tags: proofreading, grammar, spell-check, feedback, doboard
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt

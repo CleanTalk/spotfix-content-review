@@ -3,7 +3,7 @@
  * Plugin Name: Spotfix - proofreading, spelling and grammar reviews by visitors
  * Plugin URI: https://wordpress.org/plugins/spotfix-content-review/
  * Description: Collect questions, suggestions, and fix content directly on website pages.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: doBoard
  * Author URI: https://doboard.com
  * License: GPL-2.0+
@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'SPOTFIX_VERSION', '1.0.1' );
+define( 'SPOTFIX_VERSION', '1.0.2' );
 define( 'SPOTFIX_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SPOTFIX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
