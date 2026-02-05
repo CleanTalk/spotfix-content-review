@@ -399,7 +399,17 @@ class Spotfix_Admin {
 		$result = Spotfix_API::configurate_account();
 
 		if ( $result['success'] ) {
-			wp_send_json_success( $result );
+			// Run status check after configuration
+			$settings = get_option( 'spotfix_settings', array() );
+			$code = isset( $settings['code'] ) ? $settings['code'] : '';
+			$status_check = Spotfix_Status_Checker::check_status( $code );
+
+			$settings['status'] = $status_check['status'];
+			$settings['error'] = $status_check['error'];
+			update_option( 'spotfix_settings', $settings );
+
+			// Return success and flag to reload page
+			wp_send_json_success( array_merge( $result, array( 'reload' => true ) ) );
 		} else {
 			wp_send_json_error( $result );
 		}

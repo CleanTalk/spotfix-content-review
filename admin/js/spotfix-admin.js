@@ -143,6 +143,11 @@
 							$message
 								.html('<div class="notice notice-success inline"><p>' + (response.data.message || 'Account configured successfully!') + '</p></div>')
 								.show();
+							if (response.data.reload) {
+								setTimeout(function() {
+									window.location.reload();
+								}, 1200);
+							}
 						}
 					} else {
 						$message
