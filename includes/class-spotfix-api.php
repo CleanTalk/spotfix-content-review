@@ -352,8 +352,7 @@ class Spotfix_API {
 		self::resetApiData();
 
 		// Step 2: Get admin email
-		//$admin_email = get_option( 'admin_email' );
-		$admin_email = 'test' . rand( 1000, 9999 ) . '@example.com'; // For testing purposes only
+		$admin_email = get_option( 'admin_email' );
 
 		if ( empty( $admin_email ) ) {
 			return array(
