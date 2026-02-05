@@ -15,20 +15,18 @@ class Spotfix_Status_Checker {
 			);
 		}
 
-		// Extract project token, project ID, and account ID from the code
-		$project_token = self::extract_parameter( $code, 'projectToken' );
-		$project_id = self::extract_parameter( $code, 'projectId' );
-		$account_id = self::extract_parameter( $code, 'accountId' );
+		// Extract query
+        $spotfix_script_query = self::extractSanitizedQueryString($code, ['projectToken', 'projectId', 'accountId']);
 
-		if ( empty( $project_token ) || empty( $project_id ) || empty( $account_id ) ) {
+		if ( empty( $spotfix_script_query )  ) {
 			return array(
 				'status' => 'offline',
-				'error' => 'Invalid Spotfix code. Missing required parameters (projectToken, projectId, or accountId).'
+				'error' => 'Invalid Spotfix code. Missing or invalid required parameters (projectToken, projectId, or accountId).'
 			);
 		}
 
 		// Try to validate by checking if the script URL is accessible
-		$script_url = sprintf( 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?projectToken=%s&projectId=%s&accountId=%s', $project_token, $project_id, $account_id );
+		$script_url = sprintf( 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?%s', $spotfix_script_query);
 		$response = wp_remote_get( $script_url, array(
 			'timeout' => 5,
 			'sslverify' => true
@@ -64,17 +62,6 @@ class Spotfix_Status_Checker {
 		);
 	}
 
-	/**
-	 * Extract parameter value from JavaScript code.
-	 */
-	private static function extract_parameter( $code, $param_name ) {
-		$pattern = '/' . preg_quote( $param_name, '/' ) . '=([^&\s\'"]+)/';
-		if ( preg_match( $pattern, $code, $matches ) ) {
-			return $matches[1];
-		}
-		return '';
-	}
-
     /**
      * Check homepage to be sure that script url exists in the page code.
      * @param $script_url
@@ -106,6 +93,37 @@ class Spotfix_Status_Checker {
         }
 
         return false;
+    }
+
+    /**
+     * Extract and sanitize query string from provided code. Apply esc_js for every required param.
+     * @param string $code Code string
+     * @return string Extracted query string or empty string on errors
+     */
+    public static function extractSanitizedQueryString($code, $required_params = array()) {
+        if (empty($required_params)) {
+            return '';
+        }
+
+        if (!preg_match('/apbctScript\.src\s*=\s*["\'](https:\/\/spotfix\.doboard\.com\/[^"\']+)["\']/', $code, $matches)) {
+            return '';
+        }
+
+        $query_string = wp_parse_url($matches[1], PHP_URL_QUERY);
+        if (!$query_string) {
+            return '';
+        }
+
+        parse_str($query_string, $params);
+
+        foreach ($required_params as $key) {
+            if (empty($params[$key])) {
+                return '';
+            }
+            $params[$key] = esc_js($params[$key]);
+        }
+
+        return http_build_query($params);
     }
 }
 
