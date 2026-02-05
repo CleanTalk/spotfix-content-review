@@ -124,6 +124,13 @@ class Spotfix_API {
 			);
 		}
 
+		if ( isset( $response['data']['account_exists'] ) ) {
+			return array(
+				'success' => false,
+				'error'   => __( 'Account already exists.', 'spotfix-content-review' ),
+			);
+		}
+
 		if ( ! isset( $response['data']['user_token'] ) ) {
 			return array(
 				'success' => false,
@@ -345,7 +352,7 @@ class Spotfix_API {
 		self::resetApiData();
 
 		// Step 2: Get admin email
-		// $admin_email = get_option( 'admin_email' );
+		//$admin_email = get_option( 'admin_email' );
 		$admin_email = 'test' . rand( 1000, 9999 ) . '@example.com'; // For testing purposes only
 
 		if ( empty( $admin_email ) ) {
