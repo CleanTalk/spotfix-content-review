@@ -124,6 +124,13 @@ class Spotfix_API {
 			);
 		}
 
+		if ($response['error_message']) {
+			return array(
+				'success' => false,
+				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
+			);
+		}
+
 		if ( isset( $response['data']['account_exists'] ) ) {
 			return array(
 				'success' => false,
@@ -162,6 +169,13 @@ class Spotfix_API {
 			);
 		}
 
+		if ($response['error_message']) {
+			return array(
+				'success' => false,
+				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
+			);
+		}
+
 		$session_id = isset( $response['data']['session_id'] ) ? $response['data']['session_id'] : '';
 		$user_id    = isset( $response['data']['user_id'] ) ? $response['data']['user_id'] : '';
 		$account_id = '';
@@ -197,6 +211,13 @@ class Spotfix_API {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to add account: ', 'spotfix-content-review' ) . $response->get_error_message(),
+			);
+		}
+
+		if ($response['error_message']) {
+			return array(
+				'success' => false,
+				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
 			);
 		}
 
@@ -239,6 +260,13 @@ class Spotfix_API {
 			);
 		}
 
+		if ($response['error_message']) {
+			return array(
+				'success' => false,
+				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
+			);
+		}
+
 		$project_id = isset( $response['data']['project_id'] ) ? $response['data']['project_id'] : '';
 
 		return array(
@@ -268,6 +296,13 @@ class Spotfix_API {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to get project: ', 'spotfix-content-review' ) . $response->get_error_message(),
+			);
+		}
+
+		if ($response['error_message']) {
+			return array(
+				'success' => false,
+				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
 			);
 		}
 
@@ -363,7 +398,6 @@ class Spotfix_API {
 
 		// Step 3: Request API key from CleanTalk
 		$api_key_result = self::requestApiKey( $admin_email );
-
 		if ( ! $api_key_result['success'] ) {
 			return $api_key_result;
 		}

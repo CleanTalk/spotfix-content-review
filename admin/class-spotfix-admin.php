@@ -149,7 +149,7 @@ class Spotfix_Admin {
 			<p style="margin-bottom: 15px;">
 				<?php 
 				printf(
-					esc_html__( 'Click the button below to automatically create a doBoard account using your admin email (%s) and configure the widget.', 'spotfix-content-review' ),
+					esc_html__( 'Click the button below to automatically obtain a widget code. By doing so, you will sign up for a doBoard account using your admin email, (%s).', 'spotfix-content-review' ),
 					'<strong>' . esc_html( $admin_email ) . '</strong>'
 				);
 				?>
