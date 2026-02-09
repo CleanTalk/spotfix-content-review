@@ -157,7 +157,7 @@ class Spotfix_Admin {
 
 			<div id="spotfix-create-account-block">
 				<button type="button" id="spotfix-create-account" class="button button-primary">
-					<?php esc_html_e( 'Create Account', 'spotfix-content-review' ); ?>
+					<?php esc_html_e( 'Get the code', 'spotfix-content-review' ); ?>
 				</button>
 				<span id="spotfix-create-spinner" class="spinner" style="float: none;"></span>
 			</div>
