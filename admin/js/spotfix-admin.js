@@ -32,8 +32,8 @@
 				},
 				success: function(response) {
 					if (response.success) {
-						var status = response.data.status;
-						var error = response.data.error || '';
+						let status = response.data.status;
+						let error = response.data.error || '';
 						
 						// Update status indicator
 						statusIndicator
@@ -44,7 +44,7 @@
 						
 						// Update error message
 						if (status === 'offline' && error) {
-							var newError = $('<p class="spotfix-error-message"></p>').text(error);
+							let newError = $('<p class="spotfix-error-message"></p>').text(error);
 							statusIndicator.after(newError);
 						} else {
 							errorMessage.remove();
