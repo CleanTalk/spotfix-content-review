@@ -3,7 +3,7 @@
 
 	function sanitizeHTML(str) {
 		if (str == null) return '';
-		var temp = document.createElement('div');
+		let temp = document.createElement('div');
 		temp.textContent = String(str);
 		return temp.innerHTML;
 	}
