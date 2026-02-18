@@ -154,19 +154,28 @@ class Spotfix_Admin {
 				);
 				?>
 			</p>
+			<div style="display: flex; align-items: center; gap: 10px;">
+				<div id="spotfix-create-account-block">
+					<button type="button" id="spotfix-create-account" class="button button-primary">
+						<?php esc_html_e( 'Get the code', 'spotfix-content-review' ); ?>
+					</button>
+					<span id="spotfix-create-spinner" class="spinner" style="float: none; display: none;"></span>
+				</div>
 
-			<div id="spotfix-create-account-block">
-				<button type="button" id="spotfix-create-account" class="button button-primary">
-					<?php esc_html_e( 'Get the code', 'spotfix-content-review' ); ?>
-				</button>
-				<span id="spotfix-create-spinner" class="spinner" style="float: none;"></span>
-			</div>
+				<span id="spotfix-step-arrow-1" style="display: none;">→</span>
 
-			<div id="spotfix-configure-account-block" style="margin-top:15px; display:none;">
-				<button type="button" id="spotfix-configure-account" class="button button-secondary">
-					<?php esc_html_e( 'Configure Account', 'spotfix-content-review' ); ?>
-				</button>
-				<span id="spotfix-configure-spinner" class="spinner" style="float: none;"></span>
+				<div id="spotfix-verify-email-block" style="font-weight: 500; display: none;">
+					<?php esc_html_e( 'Verify Email', 'spotfix-content-review' ); ?>
+				</div>
+
+				<span id="spotfix-step-arrow-2" style="display: none;">→</span>
+
+				<div id="spotfix-configure-account-block" style="display: none;">
+					<button type="button" id="spotfix-configure-account" class="button button-secondary">
+						<?php esc_html_e( 'Configure Account', 'spotfix-content-review' ); ?>
+					</button>
+					<span id="spotfix-configure-spinner" class="spinner" style="float: none; display: none;"></span>
+				</div>
 			</div>
 
 			<div id="spotfix-setup-message" style="margin-top: 10px;"></div>
@@ -220,6 +229,13 @@ class Spotfix_Admin {
 		$status = isset( $settings['status'] ) ? $settings['status'] : 'offline';
 		$error = isset( $settings['error'] ) ? $settings['error'] : '';
 		$code = isset( $settings['code'] ) ? $settings['code'] : '';
+
+		// Get API data for Account & Project link
+		$api_data    = Spotfix_API::get_api_data();
+		$account_id  = ! empty( $api_data['account_id'] ) ? $api_data['account_id'] : '';
+		$project_id  = ! empty( $api_data['project_id'] ) ? $api_data['project_id'] : '';
+		$user_token  = ! empty( $api_data['user_token'] ) ? $api_data['user_token'] : '';
+		$show_project_link = ( $status === 'online' && $account_id && $project_id && $user_token );
 		?>
 		<div class="spotfix-status-container">
 			<span class="spotfix-status-indicator status-<?php echo esc_attr( $status ); ?>">
@@ -230,6 +246,9 @@ class Spotfix_Admin {
 				<p class="spotfix-error-message"><?php echo esc_html( $error ); ?></p>
 			<?php endif; ?>
 			<a href="#" class="spotfix-check-status-link" id="spotfix-check-status"><?php esc_html_e( 'Check Status', 'spotfix-content-review' ); ?></a>
+			<?php if ( $show_project_link ) : ?>
+				<a href="<?php echo esc_url( 'https://app.doboard.com/' . $account_id . '/projects/' . $project_id . '?user_token=' . $user_token ); ?>" class="spotfix-check-status-link" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Account & Project', 'spotfix-content-review' ); ?></a>
+			<?php endif; ?>
 		</div>
 		<?php if ( ! empty( $code ) && $status === 'online' ) : ?>
 			<div class="spotfix-instructions-section" style="margin-top: 20px; padding: 20px; background: #f0f6fc; border-left: 4px solid #2271b1;">

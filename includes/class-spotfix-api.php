@@ -124,7 +124,7 @@ class Spotfix_API {
 			);
 		}
 
-		if ($response['error_message']) {
+		if ( ! empty( $response['error_message'] ) ) {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
@@ -169,7 +169,7 @@ class Spotfix_API {
 			);
 		}
 
-		if ($response['error_message']) {
+		if ( ! empty( $response['error_message'] ) ) {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
@@ -214,7 +214,7 @@ class Spotfix_API {
 			);
 		}
 
-		if ($response['error_message']) {
+		if ( ! empty( $response['error_message'] ) ) {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
@@ -260,7 +260,7 @@ class Spotfix_API {
 			);
 		}
 
-		if ($response['error_message']) {
+		if ( ! empty( $response['error_message'] ) ) {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
@@ -299,7 +299,7 @@ class Spotfix_API {
 			);
 		}
 
-		if ($response['error_message']) {
+		if ( ! empty( $response['error_message'] ) ) {
 			return array(
 				'success' => false,
 				'error'   => __( 'Failed to connect to registration service: ', 'spotfix-content-review' ) . $response['error_message'],
@@ -460,11 +460,12 @@ class Spotfix_API {
 	 */
 	public static function configurate_account() {
 		// Step 1: Get stored API data
-		$api_data    = self::get_api_data();
-		$account_id  = $api_data['account_id'];
-		$session_id  = $api_data['session_id'];
-		$org_name    = get_bloginfo( 'name' );
-		$plugin_name = 'spotfix-content-review';
+			   $api_data    = self::get_api_data();
+			   $account_id  = $api_data['account_id'];
+			   $session_id  = $api_data['session_id'];
+			   $site_domain = parse_url( get_site_url(), PHP_URL_HOST );
+			   $org_name    = $site_domain ? $site_domain : get_bloginfo( 'name' );
+			   $plugin_name = 'Spotfix ' . $site_domain;
 
 		// Step 2: Validate required data
 		if ( $account_id === '' || $session_id === '' ) {
