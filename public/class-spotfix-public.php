@@ -45,8 +45,7 @@ class Spotfix_Public {
 
 		$sanitized_query = Spotfix_Status_Checker::extractSanitizedQuery(
 			$code,
-			array( 'projectToken', 'projectId', 'accountId' ),
-			false
+			array( 'projectToken', 'projectId', 'accountId' )
 		);
 
 		if ( empty( $sanitized_query ) ) {
