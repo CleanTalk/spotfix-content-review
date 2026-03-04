@@ -13,11 +13,6 @@ class Spotfix_Public {
 			return;
 		}
 
-		// Check if DISALLOW_UNFILTERED_HTML is enabled - if so, don't load JS
-		if ( defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML ) {
-			return;
-		}
-
 		$settings = get_option( 'spotfix_settings', array() );
 		$code = isset( $settings['code'] ) ? $settings['code'] : '';
 		$visibility = isset( $settings['visibility'] ) ? $settings['visibility'] : 'everyone';
@@ -48,31 +43,33 @@ class Spotfix_Public {
 			return;
 		}
 
-		$sanitized_query_string = Spotfix_Status_Checker::extractSanitizedQueryString(
+		$sanitized_query = Spotfix_Status_Checker::extractSanitizedQuery(
 			$code,
-			array( 'projectToken', 'projectId', 'accountId' )
+			array( 'projectToken', 'projectId', 'accountId' ),
+			false
 		);
 
-		if ( empty( $sanitized_query_string ) ) {
+		if ( empty( $sanitized_query ) ) {
 			return;
 		}
 
-		$widget_base_url = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js';
-		$widget_url      = $widget_base_url . '?' . $sanitized_query_string;
+		$widget_url = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?' . http_build_query($sanitized_query);
 
 		wp_enqueue_script(
-			'spotfix-loader',
-			SPOTFIX_PLUGIN_URL . 'public/js/spotfix-loader.js',
+			'spotfix-widget',
+			$widget_url,
 			array(),
 			SPOTFIX_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'spotfix-loader',
+			'spotfix-widget',
 			'spotfixConfig',
 			array(
-				'widgetUrl' => $widget_url,
+				'projectToken' => isset( $sanitized_query['projectToken'] ) ? $sanitized_query['projectToken'] : '',
+				'projectId' => isset( $sanitized_query['projectId'] ) ? $sanitized_query['projectId'] : '',
+				'accountId' => isset( $sanitized_query['accountId'] ) ? $sanitized_query['accountId'] : '',
 			)
 		);
 	}
