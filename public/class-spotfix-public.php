@@ -47,42 +47,34 @@ class Spotfix_Public {
 		if ( ! $should_show ) {
 			return;
 		}
-        // Register stub.
-        wp_register_script(
-                'spotfix-stub',
-                '',
-                array(),
-                SPOTFIX_VERSION,
-                true
-        );
 
-        // Enqueue stub.
-        wp_enqueue_script('spotfix-stub');
+		$sanitized_query_string = Spotfix_Status_Checker::extractSanitizedQueryString(
+			$code,
+			array( 'projectToken', 'projectId', 'accountId' )
+		);
 
-        $sanitized_query_string = Spotfix_Status_Checker::extractSanitizedQueryString(
-            $code,
-            array('projectToken', 'projectId', 'accountId')
-        );
+		if ( empty( $sanitized_query_string ) ) {
+			return;
+		}
 
-        if ( empty($sanitized_query_string) ) {
-            return;
-        }
+		$widget_base_url = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js';
+		$widget_url      = $widget_base_url . '?' . $sanitized_query_string;
 
-        $script_data =
-        "(function () {
-                  window.SpotfixWidgetConfig = {verticalPosition: 'compact'};
-                  let spotFixScript = document.createElement('script');
-                  spotFixScript.type = 'text/javascript';
-                  spotFixScript.async = 'true';
-                  spotFixScript.defer = 'true';
-                  spotFixScript.src = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?" . $sanitized_query_string. "';
-                  let firstScriptNode = document.getElementsByTagName('script')[0];
-                  firstScriptNode.parentNode.insertBefore(spotFixScript, firstScriptNode);
-                })();
-        ";
+		wp_enqueue_script(
+			'spotfix-loader',
+			SPOTFIX_PLUGIN_URL . 'public/js/spotfix-loader.js',
+			array(),
+			SPOTFIX_VERSION,
+			true
+		);
 
-        // Enqueue raw inline script. Note: Code is output as-is since it's user-provided JavaScript from admin settings
-        wp_add_inline_script('spotfix-stub', $script_data);
+		wp_localize_script(
+			'spotfix-loader',
+			'spotfixConfig',
+			array(
+				'widgetUrl' => $widget_url,
+			)
+		);
 	}
 }
 
