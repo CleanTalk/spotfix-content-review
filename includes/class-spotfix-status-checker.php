@@ -47,7 +47,7 @@ class Spotfix_Status_Checker {
 			);
 		}
 
-        if ( !self::checkHomePage($script_url) ) {
+        if ( self::checkHomePage($script_url) ) {
             return array(
                 'status' => 'offline',
                 'error' => __( 'Spotfix script not found on home page.', 'spotfix-content-review' )
