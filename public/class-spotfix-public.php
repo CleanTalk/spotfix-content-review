@@ -66,9 +66,9 @@ class Spotfix_Public {
 			'spotfix-widget',
 			'spotfixConfig',
 			array(
-				'projectToken' => isset( $sanitized_query['projectToken'] ) ? $sanitized_query['projectToken'] : '',
-				'projectId' => isset( $sanitized_query['projectId'] ) ? $sanitized_query['projectId'] : '',
-				'accountId' => isset( $sanitized_query['accountId'] ) ? $sanitized_query['accountId'] : '',
+				'projectToken' => isset( $sanitized_query['projectToken'] ) ? esc_js($sanitized_query['projectToken']) : '',
+				'projectId' => isset( $sanitized_query['projectId'] ) ? esc_js($sanitized_query['projectId']) : '',
+				'accountId' => isset( $sanitized_query['accountId'] ) ? esc_js($sanitized_query['accountId']) : '',
 			)
 		);
 	}
