@@ -1,6 +1,6 @@
 === Spotfix - proofreading, spelling and grammar reviews by visitors ===
 Contributors: cleantalk, glomberg, alexandergull, sergefcleantalk, antonv1
-Tags: proofreading, grammar, spell-check, feedback, doboard
+Tags: proofreading, grammar, spell-check, typo 
 Requires at least: 5.0
 Tested up to: 6.9
 Stable tag: 1.0.3
@@ -8,21 +8,25 @@ Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Collect visitor's questions and suggestions directly on your website pages
+Collect visitors’ questions and suggestions directly on your website pages. Make proofreading, spell checking, and grammar reviews easy.
 
 == Description ==
 
-Highlight → Ask → Resolve
+Collect visitors’ questions and suggestions directly on your website pages. Make proofreading, spell checking, and grammar reviews easy.
 
-Spotfix is a lightweight on-page widget that makes it easy for visitors, editors, writers, and team members to submit feedback directly in the context of your website's content. It's especially useful for proofreading, spell checking, and fixing outdated or unclear information, because corrections are tied to the exact place where the issue appears.
+= Highlight → Ask → Resolve =
+
+<cite>
+**Spotfix** is a lightweight on-page widget that makes it easy for visitors, editors, writers, and team members to submit feedback directly in the context of your website's content. It's especially useful for proofreading, spell checking, and fixing outdated or unclear information, because corrections are tied to the exact place where the issue appears.
+</cite>
 
 A visitor simply highlights a piece of text or an element on the page. When they do, a compact widget appears in the bottom-right corner, allowing them to submit a Spot — a short request, correction suggestion, or question attached to the precise content location. No need to describe where the problem is — the widget knows automatically.
 
 Submitting a Spot takes less than 10 seconds. The widget automatically fills the title using the highlighted text or an image's Title/Alt attribute. The visitor adds a short message, optionally includes their name and email, while the page URL and element reference are captured automatically.
 
-Each Spot becomes a task in doBoard, where your team can track progress, assign responsibility, add labels, and set due dates. The referenced element on the page is highlighted, making content review and corrections extremely straightforward. This greatly reduces miscommunication — especially compared to email feedback or team chat screenshots.
+**Each Spot becomes a task in doBoard**, where your team can track progress, assign responsibility, add labels, and set due dates. The referenced element on the page is highlighted, making content review and corrections extremely straightforward. This greatly reduces miscommunication — especially compared to email feedback or team chat screenshots.
 
-You can reply to Spots from doBoard or directly within the widget. Conversations appear as a chat thread with visible progress and status updates. If the visitor shared an email, they'll be notified when you reply.
+**You can reply to Spots from doBoard or directly within the widget**. Conversations appear as a chat thread with visible progress and status updates. If the visitor shared an email, they'll be notified when you reply.
 
 When collapsed, the Spotfix icon shows how many Spots exist on the current page and across the site. One click reveals the list and instantly highlights all linked elements.
 
@@ -45,6 +49,7 @@ This plugin connects to the following APIs — api.doboard.com, api.cleantalk.or
 3. Go to Settings > Spotfix to configure the plugin.
 
 What should I do next?
+
 * Go to [doboard.com](https://doboard.com/?utm_source=spotfix-plugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)  → Account → ANY_PROJECT → Settings → Spotfix. Don't have a doBoard account yet? Signup here:[doboard.com/signup](https://doboard.com/signup?utm_source=spotfix-pllugin&utm_medium=settings&utm_campaign=spotfix&utm_content=instruction)
 * Copy the code and paste it into the area above.
 * Click Save settings.
@@ -54,7 +59,8 @@ What should I do next?
 * Click the Review content button in the bottom-right corner.
 * Post your first spot!
 * Find the task created from the spot in doboard.com → Account → ANY_PROJECT.
-* Done!
+
+Done!
 
 == Frequently Asked Questions ==
 
@@ -69,6 +75,7 @@ Instructions to obtain the code are available at doboard.com/spotfix#doboard_set
 = Who can see the widget? =
 
 You can configure the widget to be visible to:
+
 * Everyone including unauthorized visitors
 * Authorized WordPress users only
 * Users with the admin role only
@@ -77,9 +84,15 @@ The widget is visible only on public pages of WordPress.
 
 == Screenshots ==
 
-1. Settings page with code configuration
-2. Status indicator showing online/offline state
-3. Visibility options for widget display
+1. A visitor marks a typo and sees the option to review the content.
+
+2. The visitor submits a report about the typo.
+
+3. The website owner or studio sees the report (spot) in the task management tool (doboard.com).
+
+4. Plugin settings are ready to go.
+
+5. JavaScript code to activate widget on a website.
 
 == Changelog ==
 
