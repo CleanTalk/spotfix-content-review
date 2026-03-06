@@ -3,7 +3,7 @@ Contributors: cleantalk, glomberg, alexandergull, sergefcleantalk, antonv1
 Tags: proofreading, grammar, spell-check, typo 
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 7.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -95,6 +95,8 @@ The widget is visible only on public pages of WordPress.
 5. JavaScript code to activate widget on a website.
 
 == Changelog ==
+= 1.0.4 =
+* New. Code. Interaction with the Cleantalk and Doboard APIs for registration, authorization, and project creation in Doboard
 
 = 1.0.0 =
 * Initial release
