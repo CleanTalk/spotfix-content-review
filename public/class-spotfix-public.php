@@ -13,11 +13,6 @@ class Spotfix_Public {
 			return;
 		}
 
-		// Check if DISALLOW_UNFILTERED_HTML is enabled - if so, don't load JS
-		if ( defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML ) {
-			return;
-		}
-
 		$settings = get_option( 'spotfix_settings', array() );
 		$code = isset( $settings['code'] ) ? $settings['code'] : '';
 		$visibility = isset( $settings['visibility'] ) ? $settings['visibility'] : 'everyone';
@@ -47,42 +42,35 @@ class Spotfix_Public {
 		if ( ! $should_show ) {
 			return;
 		}
-        // Register stub.
-        wp_register_script(
-                'spotfix-stub',
-                '',
-                array(),
-                SPOTFIX_VERSION,
-                true
-        );
 
-        // Enqueue stub.
-        wp_enqueue_script('spotfix-stub');
+		$sanitized_query = Spotfix_Status_Checker::extractSanitizedQuery(
+			$code,
+			array( 'projectToken', 'projectId', 'accountId' )
+		);
 
-        $sanitized_query_string = Spotfix_Status_Checker::extractSanitizedQueryString(
-            $code,
-            array('projectToken', 'projectId', 'accountId')
-        );
+		if ( empty( $sanitized_query ) ) {
+			return;
+		}
 
-        if ( empty($sanitized_query_string) ) {
-            return;
-        }
+		$widget_url = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?' . http_build_query($sanitized_query);
 
-        $script_data =
-        "(function () {
-                  window.SpotfixWidgetConfig = {verticalPosition: 'compact'};
-                  let spotFixScript = document.createElement('script');
-                  spotFixScript.type = 'text/javascript';
-                  spotFixScript.async = 'true';
-                  spotFixScript.defer = 'true';
-                  spotFixScript.src = 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?" . $sanitized_query_string. "';
-                  let firstScriptNode = document.getElementsByTagName('script')[0];
-                  firstScriptNode.parentNode.insertBefore(spotFixScript, firstScriptNode);
-                })();
-        ";
+		wp_enqueue_script(
+			'spotfix-widget',
+			$widget_url,
+			array(),
+			SPOTFIX_VERSION,
+			true
+		);
 
-        // Enqueue raw inline script. Note: Code is output as-is since it's user-provided JavaScript from admin settings
-        wp_add_inline_script('spotfix-stub', $script_data);
+		wp_localize_script(
+			'spotfix-widget',
+			'spotfixConfig',
+			array(
+				'projectToken' => isset( $sanitized_query['projectToken'] ) ? esc_js($sanitized_query['projectToken']) : '',
+				'projectId' => isset( $sanitized_query['projectId'] ) ? esc_js($sanitized_query['projectId']) : '',
+				'accountId' => isset( $sanitized_query['accountId'] ) ? esc_js($sanitized_query['accountId']) : '',
+			)
+		);
 	}
 }
 

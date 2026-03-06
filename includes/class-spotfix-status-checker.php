@@ -16,7 +16,7 @@ class Spotfix_Status_Checker {
 		}
 
 		// Extract query
-        $spotfix_script_query = self::extractSanitizedQueryString($code, ['projectToken', 'projectId', 'accountId']);
+        $spotfix_script_query = self::extractSanitizedQuery($code, ['projectToken', 'projectId', 'accountId']);
 
 		if ( empty( $spotfix_script_query )  ) {
 			return array(
@@ -26,7 +26,7 @@ class Spotfix_Status_Checker {
 		}
 
 		// Try to validate by checking if the script URL is accessible
-		$script_url = sprintf( 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?%s', $spotfix_script_query);
+		$script_url = sprintf( 'https://spotfix.doboard.com/doboard-widget-bundle.min.js?%s', http_build_query($spotfix_script_query));
 		$response = wp_remote_get( $script_url, array(
 			'timeout' => 5,
 			'sslverify' => true
@@ -47,7 +47,7 @@ class Spotfix_Status_Checker {
 			);
 		}
 
-        if ( !self::checkHomePage($script_url) ) {
+        if ( self::checkHomePage($script_url) ) {
             return array(
                 'status' => 'offline',
                 'error' => __( 'Spotfix script not found on home page.', 'spotfix-content-review' )
@@ -96,34 +96,35 @@ class Spotfix_Status_Checker {
     }
 
     /**
-     * Extract and sanitize query string from provided code. Apply esc_js for every required param.
+     * Extract and sanitize query from provided code. Apply esc_js for every required param.
      * @param string $code Code string
-     * @return string Extracted query string or empty string on errors
+     * @param array $required_params Required parameters array
+     * @return array Extracted query array or empty array on errors
      */
-    public static function extractSanitizedQueryString($code, $required_params = array()) {
+    public static function extractSanitizedQuery($code, $required_params = array()) {
         if (empty($required_params)) {
-            return '';
+            return array();
         }
 
         if (!preg_match('/apbctScript\.src\s*=\s*["\'](https:\/\/spotfix\.doboard\.com\/[^"\']+)["\']/', $code, $matches)) {
-            return '';
+            return array();
         }
 
         $query_string = wp_parse_url($matches[1], PHP_URL_QUERY);
         if (!$query_string) {
-            return '';
+            return array();
         }
 
         parse_str($query_string, $params);
 
         foreach ($required_params as $key) {
             if (empty($params[$key])) {
-                return '';
+                return array();
             }
             $params[$key] = esc_js($params[$key]);
         }
 
-        return http_build_query($params);
+        return $params;
     }
 }
 

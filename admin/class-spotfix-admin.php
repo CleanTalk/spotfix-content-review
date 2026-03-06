@@ -114,20 +114,6 @@ class Spotfix_Admin {
 	 * Render general section.
 	 */
 	public function render_general_section() {
-		// Check if DISALLOW_UNFILTERED_HTML is enabled
-		$disallow_unfiltered_html = defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML;
-
-		if ( $disallow_unfiltered_html ) {
-			$title = __( '️DISALLOW_UNFILTERED_HTML is active', 'spotfix-content-review' );
-			$description = __( 'The DISALLOW_UNFILTERED_HTML constant is currently enabled, which prevents JavaScript code execution for all user roles. This means the Spotfix widget will not work on the public part of your site. The JavaScript code will not be loaded on the frontend.', 'spotfix-content-review' );
-			?>
-			<div class="notice notice-error spotfix-unfiltered-html-notice">
-				<p class="spotfix-unfiltered-html-title"><?php echo esc_html( $title ); ?></p>
-				<p class="spotfix-unfiltered-html-description"><?php echo esc_html( $description ); ?></p>
-			</div>
-			<?php
-		}
-
 		echo sprintf( '<h3>%s</h3>', esc_html__( 'Proofreading, spelling and grammar reviews by visitors', 'spotfix-content-review' ) );
 		echo sprintf( '<p>%s</p>', esc_html__( 'Collect questions, suggestions, and fix content directly on website pages.', 'spotfix-content-review' ) );
 	}
