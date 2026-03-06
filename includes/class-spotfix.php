@@ -31,6 +31,7 @@ class Spotfix {
 		require_once SPOTFIX_PLUGIN_DIR . 'admin/class-spotfix-admin.php';
 		require_once SPOTFIX_PLUGIN_DIR . 'public/class-spotfix-public.php';
 		require_once SPOTFIX_PLUGIN_DIR . 'includes/class-spotfix-status-checker.php';
+		require_once SPOTFIX_PLUGIN_DIR . 'includes/class-spotfix-api.php';
 
 		$this->loader = new Spotfix_Loader();
 	}
@@ -46,6 +47,8 @@ class Spotfix {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_spotfix_check_status', $plugin_admin, 'ajax_check_status' );
+		$this->loader->add_action( 'wp_ajax_spotfix_create_account', $plugin_admin, 'ajax_create_account' );
+		$this->loader->add_action( 'wp_ajax_spotfix_configure_account', $plugin_admin, 'ajax_configure_account' );
 		$this->loader->add_filter( 'plugin_action_links_' . plugin_basename( SPOTFIX_PLUGIN_DIR . 'spotfix-content-review.php' ), $plugin_admin, 'add_settings_link' );
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'add_plugin_row_meta', 10, 2 );
 	}
