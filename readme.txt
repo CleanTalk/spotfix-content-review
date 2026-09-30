@@ -2,7 +2,7 @@
 Contributors: cleantalk, glomberg, alexandergull, sergefcleantalk, antonv1
 Tags: feedback, website feedback, client feedback, bug reporting, visual feedback
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.1.2
 Stable tag: 1.0.4
 Requires PHP: 7.2
 License: GPL-2.0+
@@ -10,6 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
 
 Turn website feedback into action! Users drop visual feedback right on the page, and you receive it instantly as structured tasks.
+
 
 == Description ==
 
