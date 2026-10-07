@@ -90,12 +90,10 @@
 						message
 							.html('<div class="notice notice-success inline"><p>' + sanitizeHTML(response.data.message) + '</p></div>')
 							.show();
-						if (response.data.session_id) {
-							$('#spotfix-step-arrow-1').css('display', 'inline');
-							$('#spotfix-verify-email-block').css('display', 'block');
-							$('#spotfix-step-arrow-2').css('display', 'inline');
-							$('#spotfix-configure-account-block').css('display', 'block');
-						}
+						$('#spotfix-step-arrow-1').css('display', 'inline');
+						$('#spotfix-verify-email-block').css('display', 'block');
+						$('#spotfix-step-arrow-2').css('display', 'inline');
+						$('#spotfix-configure-account-block').css('display', 'block');
 					} else {
 						message
 							.html('<div class="notice notice-error inline"><p>' + sanitizeHTML(response.data.error || 'Unknown error') + '</p></div>')

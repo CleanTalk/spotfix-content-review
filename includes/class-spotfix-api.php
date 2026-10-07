@@ -434,7 +434,7 @@ class Spotfix_API {
 		return array(
 			'success'    => true,
 			'message'    => sprintf(
-				__( 'Account registration started! A confirmation email has been sent to %s. Please check your inbox and click the confirmation link. After confirming your email, click the button above to finish configuration.', 'spotfix-content-review' ),
+				__( 'Account registration started! A confirmation email has been sent to %s. Please check your inbox and click the confirmation link. After confirming your email, click the "Configure Account" button to finish configuration.', 'spotfix-content-review' ),
 				$admin_email
 			),
 			'email'      => $admin_email,
@@ -467,11 +467,35 @@ class Spotfix_API {
 			   $org_name    = $site_domain ? $site_domain : get_bloginfo( 'name' );
 			   $plugin_name = 'Spotfix ' . $site_domain;
 
-		// Step 2: Validate required data
+		// Step 2: Authorize again if the session was not obtained during registration (unconfirmed email).
 		if ( $account_id === '' || $session_id === '' ) {
+			if ( empty( $api_data['user_token'] ) ) {
+				return array(
+					'success' => false,
+					'error'   => __( 'Account data is missing. Please create account first.', 'spotfix-content-review' ),
+				);
+			}
+
+			$auth_result = self::authorizeUser( $api_data['user_token'] );
+
+			if ( ! $auth_result['success'] ) {
+				return $auth_result;
+			}
+
+			$session_id = $auth_result['session_id'];
+			$account_id = $auth_result['account_id'];
+
+			self::update_api_data( array(
+				'session_id' => $session_id,
+				'user_id'    => $auth_result['user_id'],
+				'account_id' => $account_id,
+			) );
+		}
+
+		if ( $session_id === '' ) {
 			return array(
 				'success' => false,
-				'error'   => __( 'Account ID or session ID is missing. Please create account first.', 'spotfix-content-review' ),
+				'error'   => __( 'Email is not confirmed yet. Please confirm your email and try again.', 'spotfix-content-review' ),
 			);
 		}
 
