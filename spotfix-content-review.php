@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'SPOTFIX_VERSION', '1.0.3' );
+define( 'SPOTFIX_VERSION', '1.0.4' );
 define( 'SPOTFIX_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SPOTFIX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
