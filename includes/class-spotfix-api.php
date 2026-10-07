@@ -468,7 +468,7 @@ class Spotfix_API {
 			   $plugin_name = 'Spotfix ' . $site_domain;
 
 		// Step 2: Authorize again if the session was not obtained during registration (unconfirmed email).
-		if ( $account_id === '' || $session_id === '' ) {
+		if ( $session_id === '' ) {
 			if ( empty( $api_data['user_token'] ) ) {
 				return array(
 					'success' => false,
