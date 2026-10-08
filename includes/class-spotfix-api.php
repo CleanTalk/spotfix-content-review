@@ -115,6 +115,7 @@ class Spotfix_API {
 			'method_name'  => 'get_api_key',
 			'email'        => $email,
 			'product_name' => 'doboard',
+			'lead_source'  => 'sfpl_wizard_auto',
 		) );
 
 		if ( is_wp_error( $response ) ) {
